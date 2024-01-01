@@ -20,7 +20,7 @@ pub fun main(account: Address) {
         let retrievedVault: &MubaToken.Vault{FungibleToken.Balance}? =
             getAccount(account).getCapability(/public/Vault)
                 .borrow<&MubaToken.Vault{FungibleToken.Balance}>()
-        log(retrievedVault?.balance)
+        log("Vault Balance: \(retrievedVault?.balance ?? 0.0)")
     } else {
         log("Vault setup completed")
         
@@ -31,7 +31,7 @@ pub fun main(account: Address) {
 
         if MubaToken.vaults.contains(checkVault.uuid) {
            
-           log(publicVault?.balance)
+           log("Vault Balance: \(publicVault?.balance ?? 0.0)")
          
 
             log("MubaToken vault")
