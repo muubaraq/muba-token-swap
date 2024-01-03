@@ -20,11 +20,11 @@ transaction(senderAccount: Address, amount: UFix64) {
         self.adminResource = acct.borrow<&MubaToken.Admin>(from: /storage/AdminStorage)
             ?? panic("Admin Resource is not present")
 
-        // Borrow the signer's BuzorToken Vault from storage
+        // Borrow the signer's MubaToken Vault from storage
         self.signerVault = acct.borrow<&MubaToken.Vault>(from: /storage/VaultStorage)
             ?? panic("Vault not found in signerAccount")
 
-        // Borrow the sender's BuzorToken Vault from the public capability
+        // Borrow the sender's MubaToken Vault from the public capability
         self.senderVault = getAccount(senderAccount)
             .getCapability(/public/Vault)
             .borrow<&MubaToken.Vault{MubaToken.CollectionPublic}>()
